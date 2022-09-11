@@ -1,0 +1,124 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"projectIndex" : 0,
+					"source" : "."
+				},
+				{
+					"build" : "popechitelev_m_k",
+					"childIndexes" : 
+					[
+						2
+					],
+					"jsonFile" : "directory-popechitelev_m_k-Debug-0fda9cd958a7e4565f72.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11.0"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "popechitelev_m_k"
+				},
+				{
+					"build" : "popechitelev_m_k/prj.lab",
+					"childIndexes" : 
+					[
+						3
+					],
+					"jsonFile" : "directory-popechitelev_m_k.prj.lab-Debug-6116f015b29dd2ed7b92.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11.0"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "popechitelev_m_k/prj.lab"
+				},
+				{
+					"build" : "popechitelev_m_k/prj.lab/queue",
+					"jsonFile" : "directory-popechitelev_m_k.prj.lab.queue-Debug-b7cf5ede511c1efbcfba.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11.0"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "popechitelev_m_k/prj.lab/queue",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Project"
+				},
+				{
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3
+					],
+					"name" : "popechitelev_m_k",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 3,
+					"id" : "queue::@7ba1da1b9c8db2688b68",
+					"jsonFile" : "target-queue-Debug-ae6e3993bacee071c509.json",
+					"name" : "queue",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "queue_test::@7ba1da1b9c8db2688b68",
+					"jsonFile" : "target-queue_test-Debug-46c833e172bf66a676f3.json",
+					"name" : "queue_test",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/user/Desktop/Misha_2/Code/out/build/x64-Debug",
+		"source" : "C:/Users/user/Desktop/Misha_2/Code"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 4
+	}
+}

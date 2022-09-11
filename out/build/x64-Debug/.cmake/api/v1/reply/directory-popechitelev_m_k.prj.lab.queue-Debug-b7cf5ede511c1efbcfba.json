@@ -1,0 +1,14 @@
+{
+	"backtraceGraph" : 
+	{
+		"commands" : [],
+		"files" : [],
+		"nodes" : []
+	},
+	"installers" : [],
+	"paths" : 
+	{
+		"build" : "popechitelev_m_k/prj.lab/queue",
+		"source" : "popechitelev_m_k/prj.lab/queue"
+	}
+}
