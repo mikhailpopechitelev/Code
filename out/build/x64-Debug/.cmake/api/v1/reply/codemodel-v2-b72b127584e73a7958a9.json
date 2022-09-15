@@ -33,7 +33,8 @@
 					"build" : "popechitelev_m_k/prj.lab",
 					"childIndexes" : 
 					[
-						3
+						3,
+						4
 					],
 					"jsonFile" : "directory-popechitelev_m_k.prj.lab-Debug-6116f015b29dd2ed7b92.json",
 					"minimumCMakeVersion" : 
@@ -43,6 +44,22 @@
 					"parentIndex" : 1,
 					"projectIndex" : 1,
 					"source" : "popechitelev_m_k/prj.lab"
+				},
+				{
+					"build" : "popechitelev_m_k/prj.lab/heap",
+					"jsonFile" : "directory-popechitelev_m_k.prj.lab.heap-Debug-f4b2101db251f5932351.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11.0"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "popechitelev_m_k/prj.lab/heap",
+					"targetIndexes" : 
+					[
+						0,
+						1
+					]
 				},
 				{
 					"build" : "popechitelev_m_k/prj.lab/queue",
@@ -56,8 +73,8 @@
 					"source" : "popechitelev_m_k/prj.lab/queue",
 					"targetIndexes" : 
 					[
-						0,
-						1
+						2,
+						3
 					]
 				}
 			],
@@ -80,14 +97,17 @@
 					[
 						1,
 						2,
-						3
+						3,
+						4
 					],
 					"name" : "popechitelev_m_k",
 					"parentIndex" : 0,
 					"targetIndexes" : 
 					[
 						0,
-						1
+						1,
+						2,
+						3
 					]
 				}
 			],
@@ -95,13 +115,27 @@
 			[
 				{
 					"directoryIndex" : 3,
+					"id" : "heap::@53e30f2f11e85e66a114",
+					"jsonFile" : "target-heap-Debug-00553466755877606f59.json",
+					"name" : "heap",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "heap_test::@53e30f2f11e85e66a114",
+					"jsonFile" : "target-heap_test-Debug-a09644bddbd84c27e785.json",
+					"name" : "heap_test",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
 					"id" : "queue::@7ba1da1b9c8db2688b68",
 					"jsonFile" : "target-queue-Debug-ae6e3993bacee071c509.json",
 					"name" : "queue",
 					"projectIndex" : 1
 				},
 				{
-					"directoryIndex" : 3,
+					"directoryIndex" : 4,
 					"id" : "queue_test::@7ba1da1b9c8db2688b68",
 					"jsonFile" : "target-queue_test-Debug-46c833e172bf66a676f3.json",
 					"name" : "queue_test",

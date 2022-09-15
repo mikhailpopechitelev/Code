@@ -16,14 +16,17 @@ private:
 	private:
 
 		int data = 0;
-		std::unique_ptr<knot> next;    
+		std::unique_ptr<Queue::knot> next;
 		int key = 0;
 
 	public:
 
+		std::unique_ptr<knot>& get_ptr();
+		int get_key();
 		knot(const int& data, const int& key, std::unique_ptr<knot>& next);
 		~knot();
 		//std::unique_ptr<knot> make_unique(knot new_knot);
+		
 	};
 
 	//поля
@@ -32,8 +35,9 @@ private:
 	bool isEmpty = true;
 
 public:
+
 	//методы
-	knot& find_position(const int& T);
+	std::unique_ptr<Queue::knot> find_position_before(const int& T);
 	void push(const int& T);
 	void pop();
 	const int& Top() const;
@@ -46,7 +50,7 @@ public:
 
 	//перегрузка операторов
 	Queue& operator= (const Queue&);
-
+	friend struct knot;
 };
 
 #endif
