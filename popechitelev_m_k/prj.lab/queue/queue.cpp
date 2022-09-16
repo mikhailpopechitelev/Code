@@ -18,31 +18,60 @@ Queue::Queue() {
 
 }
 
-void Queue::push(const int& T) {
-	/*
+Queue::Queue(Queue& copy):head(nullptr),isEmpty(true) {
+	head = std::move(copy.head);
+	isEmpty = copy.isEmpty;
+}
 
+Queue& Queue::operator=(Queue& rhs) {
+	return Queue(rhs);
+}
+
+void Queue::push(const int& T) {
 	if (is_empty())
 	{
-		std::unique_ptr<knot>  first = std::make_unique<knot>(T, T, head);
-		teil = std::move(first);
+		std::unique_ptr<knot> teil = nullptr;
+		std::unique_ptr<knot>  first = std::make_unique<knot>(T, T, std::move(teil));
+		head = std::move(first);
+		isEmpty = false;
 	}
-	else if (T < (*teil).get_key())
+	else if (T < head->get_key())
 	{
-		std::unique_ptr<knot> first = std::make_unique<knot>(T, T, teil);
-		teil = std::move(first);
+		std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(head));
+		head = std::move(first);
 	}
 	else
 	{
-		//std::unique_ptr<knot>  first = std::make_unique<knot>(T, T, std::move((*find_position_before(T)).get_ptr()));
-		//teil = std::move(first);
-		//std::unique_ptr<knot>  f = std::make_unique<knot>(T, T, find_position_before(T));
-		// = std::move(f);
-		//(*first).get_ptr() = std::move((*find_position_before(T)).get_ptr());
-		//(*first).get_ptr() = std::move(first);
+		knot* tmp = head.get();
+		bool find = false;
+		while ((tmp->get_ptr()->get_ptr() != nullptr) && (find == false))
+		{
+			if ((T >= tmp->get_key()) && (T >= tmp->get_ptr()->get_key()))
+			{
+				tmp = tmp->get_ptr().get();
+			}
+			else if ((T >= tmp->get_key()) && (T < tmp->get_ptr()->get_key()))
+			{
+				find = true;
+				std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(tmp->get_ptr()));
+				tmp->get_ptr() = std::move(first);
+			}
+		}
+		if (find == false)
+		{
+			if (tmp->get_ptr()->get_key() > T)
+			{
+				std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(tmp->get_ptr()));
+				tmp->get_ptr() = std::move(first);
+			}
+			else
+			{
+				std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(tmp->get_ptr()->get_ptr()));
+				tmp->get_ptr()->get_ptr() = std::move(first);
+			}
+		}
 	}
-	*/
-}
-
+};
 
 bool Queue::is_empty() const {
 	return isEmpty;
@@ -57,28 +86,14 @@ std::unique_ptr<Queue::knot>& Queue::knot::get_ptr() {
 	return next;
 };
 
-/*
-std::unique_ptr<Queue::knot> Queue::find_position_before(const int& T) {
-	
-	//реализация нахождения предыдущего указателя
-	std::unique_ptr<knot> first = std::move(teil);
-	bool find = false;
-	while (!find);
+void Queue::pop(){
+	if (head->get_ptr() == nullptr)
 	{
-		if (T >= ((*teil).get_key()) && ((*((*first).get_ptr())).get_ptr() != head) && (T >= (*((*first).get_ptr())).get_key()))
-		{
-			first.swap((*first).get_ptr());
-		}
-		else if (T >= ((*first).get_key()) && ((*((*first).get_ptr())).get_ptr() != head) && (T < (*((*first).get_ptr())).get_key()))
-		{
-			find = true;
-			return first;
-		}
-		else if ((*((*first).get_ptr())).get_ptr() == head)
-		{
-			find = true;
-			return first;
-		}
+		isEmpty = true;
 	}
-}
-*/
+	head = std::move(head->get_ptr());
+};
+
+const int Queue::front() const{
+	return head->get_key();
+};

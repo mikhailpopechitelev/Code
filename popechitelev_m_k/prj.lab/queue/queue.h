@@ -36,19 +36,18 @@ private:
 public:
 
 	//методы
-	std::unique_ptr<Queue::knot> find_position_before(const int& T);
 	void push(const int& T);
 	void pop();
-	const int& Top() const;
+	const int front() const;
 	bool is_empty() const;
 
 	//конструкторы/диструкторы
 	Queue();
-	Queue(const Queue& copy);
+	Queue(Queue& copy);
 	~Queue() = default;
 
 	//перегрузка операторов
-	Queue& operator= (const Queue&);
+	Queue& operator= (Queue&);
 	friend struct knot;
 };
 
