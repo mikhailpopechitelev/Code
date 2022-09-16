@@ -31,7 +31,6 @@ private:
 
 	//поля
 	std::unique_ptr<knot> head;
-	std::unique_ptr<knot> teil;
 	bool isEmpty = true;
 
 public:

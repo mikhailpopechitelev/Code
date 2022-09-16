@@ -4,7 +4,6 @@
 
 Queue::knot::knot(const int& data, const int& key, std::unique_ptr<Queue::knot>& next) {
 
-	//auto next = std::make_unique<knot>();
 	this->data = data;
 	this->next = std::move(next);
 	this->key = key;
@@ -20,7 +19,7 @@ Queue::Queue() {
 }
 
 void Queue::push(const int& T) {
-
+	/*
 
 	if (is_empty())
 	{
@@ -41,6 +40,7 @@ void Queue::push(const int& T) {
 		//(*first).get_ptr() = std::move((*find_position_before(T)).get_ptr());
 		//(*first).get_ptr() = std::move(first);
 	}
+	*/
 }
 
 

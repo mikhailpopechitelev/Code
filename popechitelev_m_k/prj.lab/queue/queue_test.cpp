@@ -7,39 +7,139 @@
 
 	//возрастающая очередь с приоритетом
 
-	struct knot1 {
+struct Queue {
+
+private:
+	//возрастающая очередь с приоритетом
+	struct knot {
 	private:
 
 		int data = 0;
-		std::unique_ptr<knot1> next;
+		std::unique_ptr<Queue::knot> next;
 		int key = 0;
 
 	public:
 
-		std::unique_ptr<knot1>& get_ptr() {
+		std::unique_ptr<knot>& get_ptr() {
 			return next;
 		};
 		int get_key() {
 			return key;
-		}
-		knot1(const int& data, const int& key, std::unique_ptr<knot1>& next) {
+		};
+		knot(const int& data, const int& key, std::unique_ptr<knot>& next) {
 
 			//auto next = std::make_unique<knot>();
 			this->data = data;
 			this->next = std::move(next);
 			this->key = key;
-		}
-
-		~knot1() {
+		};
+		~knot() {
 
 			this->next = nullptr;
+		};
+		//std::unique_ptr<knot> make_unique(knot new_knot);
+
+	};
+
+	//поля
+	std::unique_ptr<knot> head;
+	bool isEmpty = true;
+
+public:
+
+	//методы
+	/*
+	knot* find_position_before(const int& T) {
+		knot* first = head.get();
+		while (first->get_ptr()->get_ptr() != nullptr);
+		{
+			if ((T >= first->get_key()) && (T >= first->get_ptr()->get_key()))
+			{
+				first = first->get_ptr().get();
+			}
+			else if ((T >= first->get_key()) && (T < first->get_ptr()->get_key()))
+			{
+				return first;
+			}
+			return first;
 		}
 
-		//std::unique_ptr<knot> make_unique(knot new_knot);
+	}
+	*/
+	void push(const int& T) {
+		if (is_empty())
+		{
+			std::unique_ptr<knot> teil = nullptr;
+			std::unique_ptr<knot>  first = std::make_unique<knot>(T, T, std::move(teil));
+			head = std::move(first);
+			isEmpty = false;
+		}
+		else if (T < head->get_key())
+		{
+			std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(head));
+			head = std::move(first);
+		}
+		else
+		{
+			knot* tmp = head.get();
+			bool find = false;
+			bool raz = false;
+			while ((tmp->get_ptr()->get_ptr() != nullptr)&&(raz==0))
+			{
+				if ((T>= tmp->get_key())&&(T>= tmp->get_ptr()->get_key()))
+				{
+					tmp = tmp->get_ptr().get();
+				}
+				else if ((T >= tmp->get_key()) && (T < tmp->get_ptr()->get_key()))
+				{
+					find = true;
+					raz = 1;
+					std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(tmp->get_ptr()));
+					tmp->get_ptr() = std::move(first);
+
+				}
+			}
+			if (find==false)
+			{
+				if (tmp->get_ptr()->get_key() > T)
+				{
+					std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(tmp->get_ptr()));
+					tmp->get_ptr() = std::move(first);
+				}
+				else
+				{
+					std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(tmp->get_ptr()->get_ptr()));
+					tmp->get_ptr()->get_ptr() = std::move(first);
+				}
+			}
+		}
+	};
+	//void pop();
+	//const int& Top() const;
+	bool is_empty() const{
+		return isEmpty;
+}
+;
+
+	//конструкторы/диструкторы
+	Queue() {
+
+	};
+	//Queue(const Queue& copy);
+	~Queue() = default;
+
+	//перегрузка операторов
+	//Queue& operator= (const Queue&);
+	friend struct knot;
+
+
+
+	//std::unique_ptr<knot> make_unique(knot new_knot);
 
 	};
 	
 	
+	/*
 	std::unique_ptr< std::unique_ptr<knot1>> find_position_before(const int& T, std::unique_ptr<knot1>& teil , std::unique_ptr<knot1>& head) {
 		std::unique_ptr<std::unique_ptr<knot1>> first = std::make_unique<std::unique_ptr<knot1>>(std::move(teil));
 		bool find = false;
@@ -62,26 +162,33 @@
 			}
 		}
 	}
-	
-	
-int main() {
-	/*
-	Queue q;
-	q.push(4);
-	q.push(1);
-	q.push(2);
-	q.push(5);
-	//std::cout<< q.
 	*/
 	
-	//* тест при создании knot1 прямо в файле при main
-	std::unique_ptr<knot1> head = nullptr;
-	std::unique_ptr<knot1> a = std::make_unique<knot1>(3, 3, std::move(head));
-	std::unique_ptr<knot1> b = std::make_unique<knot1>(2, 2, std::move(a));
-	std::unique_ptr<knot1> teil = std::make_unique<knot1>(1, 1, std::move(b));
 
+	
+int main() {
+	
+	Queue q;
+	q.push(100);
+	q.push(-3);
+	q.push(0);
+	q.push(-4);
+	q.push(14);
+	q.push(35);
+
+
+	//std::cout<< q.
+	std::cout << q.is_empty();
+	
+	/*
+	//* тест при создании knot1 прямо в файле при main
+	std::unique_ptr<knot> teil = nullptr;
+	std::unique_ptr<knot> a = std::make_unique<knot1>(3, 3,std::move(teil));
+	std::unique_ptr<knot> b = std::make_unique<knot1>(2, 2, std::move(a));
+	std::unique_ptr<knot> head = std::make_unique<knot1>(1, 1, std::move(b));
+	*/
 	//std::unique_ptr<std::unique_ptr<knot1>> hui = std::make_unique<std::unique_ptr<knot1>>(std::move(teil));
-	std::cout << ((*find_position_before(2, teil, head))->get_ptr());
+	//std::cout << find_position_before(2,head)->get_ptr();
 	
 
 
