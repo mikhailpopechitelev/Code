@@ -2,7 +2,6 @@
 //#include <doctest/doctest.h>
 //#include <queue/queue.h>
 #include <iostream>
-#include<memory>
 #include"queue.h"
 	/*
 struct Queue {
@@ -145,12 +144,13 @@ public:
 	
 int main() {
 	
+	
 	Queue q;
 	q.push(100);
 	q.push(-3);
 	q.push(93);
 	q.push(1);
-	q.push(-4);
+	q.push(-99);
 	q.push(-22);
 	q.push(48);
 	Queue q_1(q);
@@ -161,6 +161,25 @@ int main() {
 		std::cout << q_2.front() << ' ';
 		q_2.pop();
 	}
+	
+	/*
+	Queue q;
+	q.push(8);
+	q.push(3);
+	q.push(-2);
+	q.push(80);
+	q.push(0);
+	q.push(-4);
+
+	while (!q.is_empty())
+	{
+		std::cout<<q.front()<<' ';
+		q.pop();
+	}
+		*/
+
+
+
 	// тест при создании knot1 прямо в файле при main
 	/*
 	std::unique_ptr<knot> teil = nullptr;

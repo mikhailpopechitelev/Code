@@ -23,21 +23,26 @@ Queue::Queue(Queue& copy):head(nullptr),isEmpty(true) {
 	isEmpty = copy.isEmpty;
 }
 
+
 Queue& Queue::operator=(Queue& rhs) {
-	return Queue(rhs);
+	head = std::move(rhs.head);
+	isEmpty = rhs.isEmpty;
+	return *this;
 }
+
+
 
 void Queue::push(const int& T) {
 	if (is_empty())
 	{
 		std::unique_ptr<knot> teil = nullptr;
-		std::unique_ptr<knot>  first = std::make_unique<knot>(T, T, std::move(teil));
+		std::unique_ptr<knot>  first = std::make_unique<knot>(T, T, teil);
 		head = std::move(first);
 		isEmpty = false;
 	}
 	else if (T < head->get_key())
 	{
-		std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(head));
+		std::unique_ptr<knot> first = std::make_unique<knot>(T, T, head);
 		head = std::move(first);
 	}
 	else
@@ -53,7 +58,7 @@ void Queue::push(const int& T) {
 			else if ((T >= tmp->get_key()) && (T < tmp->get_ptr()->get_key()))
 			{
 				find = true;
-				std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(tmp->get_ptr()));
+				std::unique_ptr<knot> first = std::make_unique<knot>(T, T,tmp->get_ptr());
 				tmp->get_ptr() = std::move(first);
 			}
 		}
@@ -61,12 +66,13 @@ void Queue::push(const int& T) {
 		{
 			if (tmp->get_ptr()->get_key() > T)
 			{
-				std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(tmp->get_ptr()));
+				std::unique_ptr<knot> first = std::make_unique<knot>(T, T,tmp->get_ptr());
 				tmp->get_ptr() = std::move(first);
 			}
 			else
 			{
-				std::unique_ptr<knot> first = std::make_unique<knot>(T, T, std::move(tmp->get_ptr()->get_ptr()));
+				std::unique_ptr<knot> teil = nullptr;
+				std::unique_ptr<knot> first = std::make_unique<knot>(T, T, teil);
 				tmp->get_ptr()->get_ptr() = std::move(first);
 			}
 		}
